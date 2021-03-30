@@ -1,0 +1,214 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="style.css">
+	<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+	<style>#admin,#exist,#server,#veiculo { display: none; }</style>
+
+	<script type="text/javascript">
+		let selected = 0;
+		$(function () {
+			$(document).keyup(function (e) {
+				if (e.keyCode == 27) {
+					$("#admin").fadeOut();
+					$.post('http://vrp_adminp/close', JSON.stringify({}));
+				}
+			});
+
+			window.addEventListener('message', function (event) {
+				if (event.data.type == "open") {
+					$('#notexist').css('display', 'block');
+					$('#exist').css('display', 'none');
+					$("#admin").fadeIn();
+					$('input').val("");
+
+					$('#list').empty();
+					for (let i in event.data.players) {
+						let player = event.data.players[i];
+						$('#list').append('<div class="player" id="player_' + player.id + '">' + player.name + '</div>');
+					}
+
+					$(".player").click(function () {
+						let id = $(this).attr('id').replace('player_', '');
+						selected = parseInt(id);
+
+						$('.player').removeClass('selected');
+						$(this).addClass('selected');
+
+						$('#exist').find('h1').text(selected + ", " + $(this).text());
+
+						$('#notexist').css('display', 'none');
+						$('#exist').css('display', 'block');
+					});
+				}
+			});
+
+			$("#close").click(() => {
+				$("#admin").fadeOut();
+				$.post('http://vrp_adminp/close', JSON.stringify({}));
+			});
+
+			$("#select_users").click(() => {
+				$('#veiculo').css('display', 'none');
+				$('#server').css('display', 'none');
+				$('#users').css('display', 'block');
+				$(".tab").removeClass("selected");
+				$("#select_users").addClass("selected");
+				$("#select_users").blur();
+			});
+
+			$("#select_server").click(() => {
+				$('#veiculo').css('display', 'none');
+				$('#users').css('display', 'none');
+				$('#server').css('display', 'block');
+				$(".tab").removeClass("selected");
+				$("#select_server").addClass("selected");
+				$("#select_server").blur();
+			});
+
+			$("#select_global").click(() => {
+				$('#users').css('display', 'none');
+				$('#server').css('display', 'none');
+				$('#veiculo').css('display', 'block');
+				$(".tab").removeClass("selected");
+				$("#select_global").addClass("selected");
+				$("#select_global").blur();
+			});
+
+			$("#slay_all").click(function () { $.post('http://vrp_adminp/quick', JSON.stringify({ id: selected, type: 'slay_all' })); $(this).blur(); });
+			$("#bring_all").click(function () { $.post('http://vrp_adminp/quick', JSON.stringify({ id: selected, type: 'bring_all' })); $(this).blur(); });
+			$("#god_all").click(function () { $.post('http://vrp_adminp/quick', JSON.stringify({ id: selected, type: 'god_all' })); $(this).blur(); });
+
+
+			$("#kill").click(function () { $.post('http://vrp_adminp/quick', JSON.stringify({ id: selected, type: 'kill' })); $(this).blur(); });
+			$("#kick").click(function () { $.post('http://vrp_adminp/quick', JSON.stringify({ id: selected, type: 'kick' })); $(this).blur(); });
+			$("#noclip").click(function () { $.post('http://vrp_adminp/quick', JSON.stringify({ id: selected, type: 'noclip' })); $(this).blur(); });
+			$("#congelar").click(function () { $.post('http://vrp_adminp/quick', JSON.stringify({ id: selected, type: 'congelar' })); $(this).blur(); });
+			$("#tptome").click(function () { $.post('http://vrp_adminp/quick', JSON.stringify({ id: selected, type: 'tptome' })); $(this).blur(); });
+			$("#tpto").click(function () { $.post('http://vrp_adminp/quick', JSON.stringify({ id: selected, type: 'tpto' })); $(this).blur(); });
+			$("#god").click(function () { $.post('http://vrp_adminp/quick', JSON.stringify({ id: selected, type: 'god' })); $(this).blur(); });
+			$("#crash").click(function () { $.post('http://vrp_adminp/quick', JSON.stringify({ id: selected, type: 'crash' })); $(this).blur(); });
+			$("#ban").click(function () { $.post('http://vrp_adminp/quick', JSON.stringify({ id: selected, type: 'ban' })); $(this).blur(); });
+			
+			$("#deletar").click(function () { $.post('http://vrp_adminp/quick', JSON.stringify({ id: selected, type: 'deletar' })); $(this).blur(); });
+			$("#fix").click(function () { $.post('http://vrp_adminp/quick', JSON.stringify({ id: selected, type: 'fix' })); $(this).blur(); });
+			$("#tunar").click(function () { $.post('http://vrp_adminp/quick', JSON.stringify({ id: selected, type: 'tunar' })); $(this).blur(); });
+			
+			$("#carro").click(function () { $.post('http://vrp_adminp/carro', JSON.stringify({ type: 'car', param: $("#pcarro").val() })); $(this).blur(); });
+			$("#carroplaca").click(function () { $.post('http://vrp_adminp/carro', JSON.stringify({ type: 'carplaca', param: $("#plcarro").val() })); $(this).blur(); });
+			$("#carromudarcor").click(function () { $.post('http://vrp_adminp/carro', JSON.stringify({ type: 'carcor', param: $("#corcarro").val() })); $(this).blur(); });
+			
+			$("#setgroup").click(function () { $.post('http://vrp_adminp/set', JSON.stringify({ user: selected, type: 'group', param: $("#newgroup").val() })); $(this).blur(); });
+			$("#ungroup").click(function () { $.post('http://vrp_adminp/set', JSON.stringify({ user: selected, type: 'ungroup', param: $("#newgroup").val() })); $(this).blur(); });
+			
+			$("#setcar").click(function () { $.post('http://vrp_adminp/set', JSON.stringify({ user: selected, type: 'carrog', param: $("#newlevel").val() })); $(this).blur(); });
+			$("#advertencia").click(function () { $.post('http://vrp_adminp/set', JSON.stringify({ user: selected, type: 'advertencia', param: $("#newmoney").val() })); $(this).blur(); });
+			$("#setbank").click(function () { $.post('http://vrp_adminp/set', JSON.stringify({ user: selected, type: 'bank', param: $("#newbank").val() })); $(this).blur(); });
+
+			$('button').click(function () { $(this).blur(); });
+		});
+	</script>
+</head>
+
+<body>
+	<div id="admin">
+		<div class="topbar">
+			<p>PAINEL ADMIN</p>
+			<div id="close">&#10060;</div>
+		</div>
+
+		<div id="tabs">
+			<button id="select_users" class="tab selected"><i class="fa fa-bars"></i> USUARIOS</button>
+			<button id="select_server" class="tab"><i class="fa fa-globe"></i> SERVIDOR</button>
+			<button id="select_global" class="tab"><i class="fa fa-car"></i> VEICULO</button>
+		</div>
+ 
+		<div id="main">
+			<div id="users">
+				<div id="list">
+				</div>
+				<div id="selected">
+					<div id="notexist">
+						<h1>Escolha Um Player</h1> 
+					</div>
+					<div id="exist">
+						<h1>Players</h1>
+						<div id="quick">
+							<h3>AÇÕES DO JOGADOR</h3>
+							<button class="quick" id="kill">MATAR</button>
+							<button class="quick" id="kick">EXPULSAR/KICK</button>
+							<button class="quick" id="noclip">NOCLIP</button>
+							<button class="quick" id="congelar">CONGELAR PLAYER</button>
+							<button class="quick" id="tptome">TRAZER PLAYER</button>
+							<button class="quick" id="tpto"> IR PARA PLAYER</button>
+							<button class="quick" id="god">GOD</button>
+							<button class="quick" id="crash">BVIDA </button>
+							<button class="quick" id="ban">BANIR</button>
+						</div>
+						<div id="set">
+							<h3>ADMINISTRATIVO</h3>
+							<div class="group_add">
+								<label>GRUPO</label>
+								<input id="newgroup" type="text" placeholder="NOME DO GRUPO"></input>
+								<button id="setgroup">Set</button>
+								<button id="ungroup">Tirar</button>
+								
+							</div>
+							<div class="group_set">
+								<label>ADICIONAR VEICULO</label>
+								<input id="newlevel" type="text" placeholder="NOME DO VEICULO"></input>
+								<button id="setcar">Set</button>
+							</div>
+							<div class="group_set">
+								<label>ADVERTENCIA</label>
+								<input id="newmoney" type="text" placeholder="ADVERTENCIA"></input>
+								<button id="advertencia">Set</button>
+							</div>
+							<div class="group_set">
+								<label>DAR DINHEIRO</label>
+								<input id="newbank" type="text" placeholder="DAR DINHEIRO"></input>
+								<button id="setbank">Set</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="server">
+				<h3>Servidor</h3>
+				<button class="quick" id="god_all">Reviver Todos</button>
+				<button class="quick" id="slay_all">Kickar Todos</button>
+				<button class="quick" id="bring_all">Trazer todos</button>
+			
+			</div>
+
+			<div id="veiculo">
+				<h3 id="nomev">Veiculos</h3>
+				<div id="botas">
+				<button class="apertar" id="deletar">Deletar</button>
+				<button class="apertar" id="fix">Consertar </button>
+				<button class="apertar" id="tunar">Tunar</button>
+				</div>
+				
+				<div class="carname">
+					
+					<label id="carrotxt">Pegar Carro</label>
+					<input id="pcarro" type="text" placeholder="nome de spawn"></input>
+					<button id="carro">Spawnar</button>
+					<label id="carrotxt">Mudar Placa</label>
+					<input id="plcarro" type="text" placeholder="nome da placa"></input>
+					<button id="carroplaca">mudar placa</button>
+					
+				</div>
+
+				
+
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>

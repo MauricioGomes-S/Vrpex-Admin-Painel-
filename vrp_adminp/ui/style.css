@@ -1,0 +1,375 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic,900,900italic,300italic,300,100italic,100);
+
+body, html {
+	overflow-y: hidden;
+}
+  
+#admin {
+	font-family: 'Roboto', sans-serif;
+	height: 700px;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.80), rgba(65, 87, 95, 0.40));
+	color: white;
+	width: 800px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -350px;
+	margin-left: -400px;
+	padding-bottom: 20px;
+	border-radius: 20px;
+}
+ 
+#main {
+	height: 640px;
+
+}
+
+#tabs {
+	height: 30px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.300);
+
+}
+
+.tab {
+	width: 100px;
+	height: 30px;
+	float: left;
+	border: none;
+	font-weight: bold;
+	color: white;
+	background: rgb(50, 50, 50);
+}
+
+.tab.selected {
+	background: rgb(65, 87, 95);
+	border: 1px solid rgba(255, 255, 255, 0.445);
+}
+
+#list {
+	display: inline-block;
+	margin-bottom: 100px;
+	width: 200px;
+	height: 640px;
+	overflow-x: hidden;
+	-webkit-box-shadow: 0 6px 20px rgba(0, 0, 0, 0.19);
+			box-shadow: 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+
+#selected h3 {
+	margin-left: 5px;
+}
+
+.quick {
+	margin-left: 9px;
+	width: 31%;
+	background: rgba(100, 100, 100, 0.5);
+	border: 2px solid rgb(39, 39, 39);
+	border-radius: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top: 5px;
+	color: white;
+	font-size: 17px;
+
+}
+.quick:hover{
+	color: rgb(255, 255, 255);
+	background: rgba(65, 87, 95);
+	border: 2px solid rgb(39, 39, 39);
+	font-size: 17.2px;
+
+}
+.quick:active {
+	box-shadow: 0 5px #666;
+	color: rgba(54, 54, 54, 0.973);
+}
+
+.group_set {
+	
+	float: left;
+	padding: 10px;
+	width: 278px;
+}
+.group_add {
+	
+	float: left;
+	padding-top: 10px;
+	width: 230px;
+	margin-left: 10px;
+	margin-right: 60px;
+}
+.group_add button:hover {
+	color: rgb(255, 255, 255);
+	background: rgba(65, 87, 95);
+}
+
+
+.group_add button:active {
+	color:  rgba(54, 54, 54, 0.973);
+
+}
+
+
+.group_add button {
+	padding-left: 15px;
+	border: none;
+	width: 40%;
+	margin-top: 4px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background: rgba(43, 43, 43, 0.774);
+	color: white;
+	font-weight: bold;
+	border: 0.5px solid rgba(0, 0, 0, 0.253);
+	border-radius: 10px;
+	
+}
+.group_set button {
+	padding-left: 25px;
+	padding-right: 25px;
+	border: none;
+	width: 100%;
+	margin-top: 4px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background: rgba(43, 43, 43, 0.774);
+	color: white;
+	font-weight: bold;
+	border: 0.5px solid rgba(0, 0, 0, 0.253);
+	border-radius: 10px;
+}
+.group_set button:hover {
+	color: rgb(255, 255, 255);
+	background: rgba(65, 87, 95);
+}
+
+
+.group_set button:active {
+	color:  rgba(54, 54, 54, 0.973);
+
+}
+
+
+
+
+.group_set input {
+	width: 100%;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.group_set label {
+	display: block;
+}
+
+#selected {
+	position: absolute;
+	display: inline-block;
+	width: 600px;
+	height: 640px;
+}
+
+#selected h1 {
+	margin-left: 20px;
+}
+
+.player {
+	width: 100%;
+	font-weight: bold;
+	text-indent: 10px;
+	padding: 5px;
+}
+
+.player:nth-child(odd) {
+	background: -webkit-linear-gradient(right, transparent 0%, rgb(85, 85, 85) 100%);
+}
+
+.player.selected {
+	background: -webkit-linear-gradient(right, transparent 0%, rgb(65, 87, 95) 100%);
+}
+
+.topbar {
+	height: 50px;
+	font-weight: bold;
+	font-size: 26px;
+	background: rgba(0, 0, 0, 0.700);
+	border-radius: 20px;
+}
+
+
+.body {
+	height: 650px;
+}
+
+.topbar p {
+	position: relative;
+	left: 300px;
+	top: 0;
+	margin-top: 0;
+	padding: 10px;
+	display: inline-block;
+}
+
+#close {
+	
+	float: right;
+	padding: 5px;
+	padding-right: 10px;
+	color: rgba(255, 0, 0, 0.267);
+}
+
+#close:hover{
+	padding: 6px;
+	padding-right: 10px;
+	color: rgb(255, 0, 0);
+	
+}
+#veiculo{
+	margin-left: 10px;
+	display: block;
+}
+
+.carname {
+	padding: 10px;
+	width: 278px;
+}
+
+.carname button {
+	padding-left: 25px;
+	padding-right: 25px;
+	border: none;
+	width: 100%;
+	margin-top: 4px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background: rgba(43, 43, 43, 0.774);
+	color: white;
+	font-weight: bold;
+	border: 0.5px solid rgba(0, 0, 0, 0.253);
+	border-radius: 10px;
+}
+.carname button:hover {
+	color: rgb(255, 255, 255);
+	background: rgba(65, 87, 95);
+}
+
+
+.carname button:active {
+	color:  rgba(54, 54, 54, 0.973);
+
+}
+
+.carname input {
+	width: 100%;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.carname label {
+	position: static;
+	
+	
+}
+#nomev{margin-left: 350px;
+
+}
+#botas{
+	float: right;
+}
+.apertar {
+	width: 50%;
+	margin-right: 300px;
+	background: rgba(100, 100, 100, 0.5);
+	border: 2px solid rgb(39, 39, 39);
+	border-radius: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top: 5px;
+	color: white;
+	font-size: 17px;
+	display: block;
+
+
+}
+.apertar:hover{
+	color: rgb(255, 255, 255);
+	background: rgba(65, 87, 95);
+	border: 2px solid rgb(39, 39, 39);
+
+}
+.apertar:active {
+	box-shadow: 0 5px #666;
+	color: rgba(54, 54, 54, 0.973);
+}
+
+
+
+.custom-select {
+	
+	position: relative;
+	font-family: Arial;
+	display: inline-block;
+	margin-left: 50px;
+	margin-top: 50px;
+	
+  }
+  
+  .custom-select select {
+	display: none; /*hide original SELECT element: */
+
+  }
+  
+  .select-selected {
+	background-color: DodgerBlue;
+	
+  }
+  
+  /* Style the arrow inside the select element: */
+  .select-selected:after {
+	position: absolute;
+	content: "";
+	top: 14px;
+	right: 10px;
+	width: 0;
+	height: 0;
+	border: 6px solid transparent;
+	border-color: #fff transparent transparent transparent;
+	
+  }
+  
+  /* Point the arrow upwards when the select box is open (active): */
+  .select-selected.select-arrow-active:after {
+	border-color: transparent transparent #fff transparent;
+	top: 7px;
+	
+  }
+  
+  /* style the items (options), including the selected item: */
+  .select-items div,.select-selected {
+	color: #ffffff;
+	padding: 8px 16px;
+	border: 1px solid transparent;
+	border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+	cursor: pointer;
+  }
+  
+  /* Style items (options): */
+  .select-items {
+	position: absolute;
+	background-color: DodgerBlue;
+	top: 100%;
+	left: 0;
+	right: 0;
+	z-index: 99;
+	overflow: scroll;
+	height: 300px;
+  }
+  
+  /* Hide the items when the select box is closed: */
+  .select-hide {
+	display: none;
+  }
+  
+  .select-items div:hover, .same-as-selected {
+	background-color: rgba(0, 0, 0, 0.1);
+  }  
